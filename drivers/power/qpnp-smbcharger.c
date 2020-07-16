@@ -4725,7 +4725,6 @@ static int smbchg_restricted_charging(struct smbchg_chip *chip, bool enable)
 
 	return rc;
 }
-extern void ist30xx_set_ta_mode(bool mode);
 extern void tpd_usb_plugin(bool mode);
 int set_usb_charge_mode_par = 0;
 static void handle_usb_removal(struct smbchg_chip *chip)
@@ -4734,7 +4733,7 @@ static void handle_usb_removal(struct smbchg_chip *chip)
 	int rc;
 
 	if (set_usb_charge_mode_par == 1) {
-		ist30xx_set_ta_mode(0);
+		tpd_usb_plugin(0);
 	} else if (set_usb_charge_mode_par == 2) {
 		tpd_usb_plugin(0);
 	}
@@ -4810,7 +4809,7 @@ static void handle_usb_insertion(struct smbchg_chip *chip)
 	int rc;
 	char *usb_type_name = "null";
 	if (set_usb_charge_mode_par == 1) {
-		ist30xx_set_ta_mode(1);
+		tpd_usb_plugin(1);
 	} else if (set_usb_charge_mode_par == 2) {
 		tpd_usb_plugin(1);
 	}
