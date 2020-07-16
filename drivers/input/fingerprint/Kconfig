@@ -2,5 +2,22 @@ config INPUT_FINGERPRINT
 	tristate "Fingerprint driver support"
 	help
 	  Say Y here to enable goodix fingerprint driver support!
+
+if INPUT_FINGERPRINT
+
+config INPUT_FINGERPRINT_GF3258_ZQL1590
+	tristate "GF3258_ZQL1590"
+	depends on SPI
+	help
+	  Say Y here if you have a 88PM860x PMIC and want to enable
+	  support for the built-in touchscreen.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called 88pm860x-ts.
+
 source "drivers/input/fingerprint/goodix/Kconfig"
 source "drivers/input/fingerprint/fpc/Kconfig"
+
+endif
